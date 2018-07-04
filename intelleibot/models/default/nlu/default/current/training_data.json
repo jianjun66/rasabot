@@ -1,0 +1,548 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 25,
+            "entity": "program",
+            "start": 16,
+            "value": "volunteer"
+          },
+          {
+            "end": 37,
+            "entity": "interest",
+            "start": 26,
+            "value": "immigration"
+          }
+        ],
+        "text": "I would like to volunteer immigration"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 16,
+            "entity": "program",
+            "start": 10,
+            "value": "donate"
+          },
+          {
+            "end": 37,
+            "entity": "interest",
+            "start": 21,
+            "value": "reduce pollution"
+          }
+        ],
+        "text": "hi, there donate for reduce pollution"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 28,
+            "entity": "program",
+            "start": 20,
+            "value": "donation"
+          },
+          {
+            "end": 38,
+            "entity": "interest",
+            "start": 34,
+            "value": "cats"
+          }
+        ],
+        "text": "hi, there I want to donation with cats"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 9,
+            "entity": "program",
+            "start": 0,
+            "value": "volunteer"
+          }
+        ],
+        "text": "volunteer to"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 34,
+            "entity": "program",
+            "start": 26,
+            "value": "donation"
+          },
+          {
+            "end": 46,
+            "entity": "interest",
+            "start": 39,
+            "value": "refugee"
+          }
+        ],
+        "text": "hi, there I would like to donation for refugee"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 16,
+            "entity": "program",
+            "start": 10,
+            "value": "donate"
+          },
+          {
+            "end": 39,
+            "entity": "interest",
+            "start": 20,
+            "value": "preventing drilling"
+          }
+        ],
+        "text": "I want to donate to preventing drilling"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 16,
+            "entity": "program",
+            "start": 10,
+            "value": "donate"
+          },
+          {
+            "end": 21,
+            "entity": "interest",
+            "start": 17,
+            "value": "dogs"
+          }
+        ],
+        "text": "hi, there donate dogs"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 24,
+            "entity": "program",
+            "start": 16,
+            "value": "donation"
+          },
+          {
+            "end": 47,
+            "entity": "interest",
+            "start": 30,
+            "value": "human trafficking"
+          }
+        ],
+        "text": "I would like to donation with human trafficking"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 29,
+            "entity": "program",
+            "start": 20,
+            "value": "volunteer"
+          },
+          {
+            "end": 47,
+            "entity": "interest",
+            "start": 30,
+            "value": "human trafficking"
+          }
+        ],
+        "text": "hi, there I want to volunteer human trafficking"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 19,
+            "entity": "program",
+            "start": 10,
+            "value": "volunteer"
+          },
+          {
+            "end": 28,
+            "entity": "interest",
+            "start": 24,
+            "value": "cats"
+          }
+        ],
+        "text": "I want to volunteer for cats"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 18,
+            "entity": "program",
+            "start": 10,
+            "value": "donation"
+          }
+        ],
+        "text": "hi, there donation to"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 22,
+            "entity": "program",
+            "start": 16,
+            "value": "donate"
+          },
+          {
+            "end": 47,
+            "entity": "interest",
+            "start": 28,
+            "value": "preventing drilling"
+          }
+        ],
+        "text": "I would like to donate with preventing drilling"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 19,
+            "entity": "program",
+            "start": 10,
+            "value": "volunteer"
+          },
+          {
+            "end": 41,
+            "entity": "interest",
+            "start": 25,
+            "value": "reduce pollution"
+          }
+        ],
+        "text": "I want to volunteer with reduce pollution"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 6,
+            "entity": "program",
+            "start": 0,
+            "value": "donate"
+          },
+          {
+            "end": 11,
+            "entity": "interest",
+            "start": 7,
+            "value": "dogs"
+          }
+        ],
+        "text": "donate dogs"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 34,
+            "entity": "program",
+            "start": 26,
+            "value": "donation"
+          },
+          {
+            "end": 49,
+            "entity": "interest",
+            "start": 38,
+            "value": "immigration"
+          }
+        ],
+        "text": "hi, there I would like to donation to immigration"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 19,
+            "entity": "program",
+            "start": 10,
+            "value": "volunteer"
+          },
+          {
+            "end": 42,
+            "entity": "interest",
+            "start": 23,
+            "value": "preventing drilling"
+          }
+        ],
+        "text": "I want to volunteer to preventing drilling"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 16,
+            "entity": "program",
+            "start": 10,
+            "value": "donate"
+          },
+          {
+            "end": 25,
+            "entity": "interest",
+            "start": 21,
+            "value": "cats"
+          }
+        ],
+        "text": "hi, there donate for cats"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 18,
+            "entity": "program",
+            "start": 10,
+            "value": "donation"
+          }
+        ],
+        "text": "I want to donation"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 16,
+            "entity": "program",
+            "start": 10,
+            "value": "donate"
+          },
+          {
+            "end": 29,
+            "entity": "interest",
+            "start": 22,
+            "value": "refugee"
+          }
+        ],
+        "text": "hi, there donate with refugee"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 35,
+            "entity": "program",
+            "start": 26,
+            "value": "volunteer"
+          },
+          {
+            "end": 57,
+            "entity": "interest",
+            "start": 40,
+            "value": "human trafficking"
+          }
+        ],
+        "text": "hi, there I would like to volunteer for human trafficking"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 25,
+            "entity": "program",
+            "start": 16,
+            "value": "volunteer"
+          },
+          {
+            "end": 45,
+            "entity": "interest",
+            "start": 29,
+            "value": "reduce pollution"
+          }
+        ],
+        "text": "I would like to volunteer to reduce pollution"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 18,
+            "entity": "program",
+            "start": 10,
+            "value": "donation"
+          },
+          {
+            "end": 28,
+            "entity": "interest",
+            "start": 24,
+            "value": "dogs"
+          }
+        ],
+        "text": "I want to donation with dogs"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 16,
+            "entity": "program",
+            "start": 10,
+            "value": "donate"
+          },
+          {
+            "end": 28,
+            "entity": "interest",
+            "start": 17,
+            "value": "immigration"
+          }
+        ],
+        "text": "hi, there donate immigration"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 29,
+            "entity": "program",
+            "start": 20,
+            "value": "volunteer"
+          },
+          {
+            "end": 38,
+            "entity": "interest",
+            "start": 34,
+            "value": "dogs"
+          }
+        ],
+        "text": "hi, there I want to volunteer for dogs"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 6,
+            "entity": "program",
+            "start": 0,
+            "value": "donate"
+          },
+          {
+            "end": 29,
+            "entity": "interest",
+            "start": 10,
+            "value": "preventing drilling"
+          }
+        ],
+        "text": "donate to preventing drilling"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 35,
+            "entity": "program",
+            "start": 26,
+            "value": "volunteer"
+          }
+        ],
+        "text": "hi, there I would like to volunteer"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 18,
+            "entity": "program",
+            "start": 10,
+            "value": "donation"
+          },
+          {
+            "end": 30,
+            "entity": "interest",
+            "start": 23,
+            "value": "refugee"
+          }
+        ],
+        "text": "hi, there donation for refugee"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 16,
+            "entity": "program",
+            "start": 10,
+            "value": "donate"
+          },
+          {
+            "end": 24,
+            "entity": "interest",
+            "start": 20,
+            "value": "cats"
+          }
+        ],
+        "text": "I want to donate to cats"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 25,
+            "entity": "program",
+            "start": 16,
+            "value": "volunteer"
+          },
+          {
+            "end": 42,
+            "entity": "interest",
+            "start": 26,
+            "value": "reduce pollution"
+          }
+        ],
+        "text": "I would like to volunteer reduce pollution"
+      },
+      {
+        "intent": "ask_program",
+        "entities": [
+          {
+            "end": 18,
+            "entity": "program",
+            "start": 10,
+            "value": "donation"
+          },
+          {
+            "end": 35,
+            "entity": "interest",
+            "start": 24,
+            "value": "immigration"
+          }
+        ],
+        "text": "hi, there donation with immigration"
+      },
+      {
+        "intent": "greet",
+        "text": "hi"
+      },
+      {
+        "intent": "greet",
+        "text": "hello"
+      },
+      {
+        "intent": "greet",
+        "text": "How are you doing?"
+      },
+      {
+        "intent": "greet",
+        "text": "Good morning"
+      },
+      {
+        "intent": "greet",
+        "text": "Good afternoon"
+      },
+      {
+        "intent": "greet",
+        "text": "hey"
+      }
+    ],
+    "regex_features": [],
+    "entity_synonyms": []
+  }
+}

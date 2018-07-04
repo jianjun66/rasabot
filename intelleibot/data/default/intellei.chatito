@@ -1,0 +1,59 @@
+%[ask_program](30)
+    ~[hi?] ~[want?] @[program] ~[to?] @[interest?]
+
+~[want]
+    I would like to
+    I want to
+
+@[program]
+    donate
+    donation
+    volunteer
+
+
+%[greet]
+    hey
+    hi
+    hello
+    How are you doing?
+    Good morning
+    Good afternoon
+~[hi]
+    hi, there
+~[to]
+    to
+    for
+    with 
+~[botName]
+    Intellei
+
+~[please]
+    please
+    pls
+
+~[find]
+    find
+    show me
+
+~[in]
+    in the area of
+    for
+    in
+
+~[animal]
+    dogs 
+    cats 
+
+~[human]
+    human trafficking
+    immigration
+    refugee
+
+~[environment]
+    reduce pollution
+    preventing drilling
+
+@[interest]
+    ~[animal]
+    ~[human]
+    ~[environment]

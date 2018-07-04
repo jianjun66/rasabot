@@ -1,0 +1,118 @@
+action_factory: null
+action_names:
+- utter_greet
+- utter_goodbye
+- utter_default
+- utter_ack_dosearch
+- utter_ack_findalternatives
+- utter_ack_makingdonation
+- utter_ask_interest
+- utter_ask_whichprogram
+- utter_ask_location
+- utter_ask_moreupdates
+- utter_ask_amount
+- utter_on_it
+- action_search_programs
+- action_suggest
+actions:
+- utter_greet
+- utter_goodbye
+- utter_default
+- utter_ack_dosearch
+- utter_ack_findalternatives
+- utter_ack_makingdonation
+- utter_ask_interest
+- utter_ask_whichprogram
+- utter_ask_location
+- utter_ask_moreupdates
+- utter_ask_amount
+- utter_on_it
+- bot.ActionSearchPrograms
+- bot.ActionSuggest
+config:
+  store_entities_as_slots: true
+entities:
+- location
+- info
+- amount
+- program
+- interest
+intents:
+- greet
+- ask_program
+- affirm
+- deny
+- inform
+- thankyou
+- request_info
+- find_program
+slots:
+  amount:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  info:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  interest:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  location:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+  matches:
+    initial_value: null
+    type: rasa_core.slots.UnfeaturizedSlot
+  program:
+    initial_value: null
+    type: rasa_core.slots.TextSlot
+templates:
+  utter_ack_dosearch:
+  - text: OK let me see what I can find
+  utter_ack_findalternatives:
+  - text: OK let me see what else there is
+  utter_ack_makingdonation:
+  - buttons:
+    - payload: thank you
+      title: thank you
+    text: OK making a donation
+  utter_ask_amount:
+  - buttons:
+    - payload: '5'
+      title: $5
+    - payload: '10'
+      title: $10
+    - payload: '100'
+      title: $100
+    text: What amount?
+  utter_ask_interest:
+  - buttons:
+    - payload: animal
+      title: Animal
+    - payload: human
+      title: Human
+    - payload: environment
+      title: Environment
+    text: Which area are you interested in?
+  utter_ask_location:
+  - text: where?
+  utter_ask_moreupdates:
+  - text: if you'd like to modify anything else, please tell me what
+  utter_ask_whichprogram:
+  - buttons:
+    - payload: donation
+      title: Donation
+    - payload: volunteer
+      title: Volunteer
+    text: Which program are you interested in?
+  utter_default:
+  - text: default message
+  utter_goodbye:
+  - text: goodbye.
+  - text: Bye-bye
+  - text: later
+  utter_greet:
+  - text: hey there!
+  - text: how are you doing?
+  utter_on_it:
+  - text: I'm on it
+topics: []

@@ -1,0 +1,99 @@
+slots:
+  interest:
+    type: text
+  program:
+    type: text
+  location:
+    type: text
+  amount:
+    type: text
+  info:
+    type: text
+  matches:
+    type: unfeaturized
+
+entities:
+- location
+- info
+- amount
+- program
+- interest
+
+intents:
+ - greet
+ - ask_program
+ - affirm
+ - deny
+ - inform
+ - thankyou
+ - request_info
+ - find_program
+
+templates:
+  utter_greet:
+    - "hey there!"
+    - "how are you doing?"
+  utter_goodbye:
+    - "goodbye."
+    - "Bye-bye"
+    - "later"
+  utter_default:
+    - "default message"
+  utter_ack_dosearch: 
+    - "OK let me see what I can find"
+  utter_ack_findalternatives:
+    - "OK let me see what else there is"
+  utter_ack_makingdonation:
+    - text: "OK making a donation"
+      buttons:
+        - title: "thank you"
+          payload: "thank you"
+  utter_ask_interest: 
+    - "what do you care about?"
+  utter_ask_whichprogram:
+    - text: "Which program are you interested in?"
+      buttons: 
+        - title: "Donation"
+          payload: "donation"
+        - title: "Volunteer"
+          payload: "volunteer"
+  utter_ask_interest:
+    - text: "Which area are you interested in?"
+      buttons: 
+        - title: "Animal"
+          payload: "animal"
+        - title: "Human"
+          payload: "human"
+        - title: "Environment"
+          payload: "environment"
+  utter_ask_location:
+    - "where?"
+  utter_ask_moreupdates: 
+    - "if you'd like to modify anything else, please tell me what"
+  utter_ask_amount: 
+    - text: "What amount?"
+      buttons:
+      - title: "$5"
+        payload: "5"
+      - title: "$10"
+        payload: "10"
+      - title: "$100"
+        payload: "100"
+  utter_on_it: 
+    - "I'm on it"
+
+actions:
+- utter_greet
+- utter_goodbye
+- utter_default
+- utter_ack_dosearch
+- utter_ack_findalternatives
+- utter_ack_makingdonation
+- utter_ask_interest
+- utter_ask_whichprogram
+- utter_ask_location
+- utter_ask_moreupdates
+- utter_ask_amount
+- utter_on_it
+- bot.ActionSearchPrograms
+- bot.ActionSuggest

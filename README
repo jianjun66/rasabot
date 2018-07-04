@@ -1,0 +1,46 @@
+Install:
+1. download the python version 3 from https://www.python.org/downloads 
+2. Install python
+3. install packages: 
+a. pip install django
+b. pip install xmltodict
+
+run:
+To start the chatterbot-django app
+>python3 manage.py runserver 0.0.0.0:8000
+Note, you can replace 0.0.0.0 to IP you want to use.
+
+#run the locust load test , it will look for the locustfile.py automatically
+locust --host=http://localhost:8000 
+then goto:
+http://localhost:8089/
+
+
+# build and run my own docker image
+#docker build -t jxu/jxubot .
+#docker run  -p 18000:8000 --name jxubot jxu/jxubot 
+
+# run tensorflow in docker interactively and map the running bot to 18000 on localhost
+#docker run -it -p 18000:8000 jxu/jxubot
+
+# add mongodb to the services, define app and mongod services in docker-compose.yml
+docker-compose up
+docker-compose build
+
+#when running mongo and app as two services , the database_uri in the bot app should be reteived from environment variable 
+#set in the mongo section of the docker-compose.yml
+
+#push to docker repositoy. rasabot_app is the local image name
+export DOCKER_ID_USER=jxublackboard
+docker login
+docker tag rasabot_app $DOCKER_ID_USER/jxubot
+docker push $DOCKER_ID_USER/jxubot 
+-------
+Docker tools
+
+#!/bin/bash
+# Delete all containers
+docker rm $(docker ps -a -q)
+# Delete all images
+docker rmi -f $(docker images -q)
+
