@@ -1,0 +1,32 @@
+apiVersion: 2018-06-01
+location: eastus
+name: botContainerGroup
+properties:
+  containers:
+  - name: jxu-bot-app
+    properties:
+      image: jxubotacr.azurecr.io/jxu-bot-app:v1
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+      ports:
+      - port: 80
+      - port: 8080
+  - name: mongo
+    properties:
+      image: mongo
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.5
+  osType: Linux
+  ipAddress:
+    type: Public
+    ports:
+    - protocol: tcp
+      port: '80'
+    - protocol: tcp
+      port: '8080'
+tags: null
+type: Microsoft.ContainerInstance/containerGroups

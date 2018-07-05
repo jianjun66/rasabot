@@ -1,9 +1,5 @@
-Install:
-1. download the python version 3 from https://www.python.org/downloads 
-2. Install python
-3. install packages: 
-a. pip install django
-b. pip install xmltodict
+# This project is under construction......
+
 
 run:
 To start the chatterbot-django app
@@ -44,3 +40,44 @@ docker rm $(docker ps -a -q)
 # Delete all images
 docker rmi -f $(docker images -q)
 
+
+# deploy docker image to Azure
+
+build a docker image
+
+# use Azure command line tool CLI,  jxubotACR is the Azure Container Registry name 
+az login
+az group create --name botResourceGroup --location eastus
+# create a resource group with name of "botResourceGroup"
+az acr create --resource-group botResourceGroup --name jxubotACR --sku Basic --admin-enabled true
+az acr login --name jxubotACR
+az acr show --name jxubotACR --query loginServer --output table # output "jxubotacr.azurecr.io"
+#docker image # shows the local image name "rasabot_app"
+#docker tag rasabot_app jxubotacr.azurecr.io/jxu-bot-app:v1
+docker build . -t jxubotacr.azurecr.io/jxu-bot-app:v1
+
+az acr login --name jxubotacr
+docker push jxubotacr.azurecr.io/jxu-bot-app:v1
+az acr repository list --name jxubotACR --output table # returns jxu-bot-app
+az acr repository show-tags --name jxubotACR --repository jxu-bot-app --output table #returns v1
+# Deploy the container
+az acr credential show --name jxubotACR --query "passwords[0].value" # get the container registry password
+az container create --resource-group botResourceGroup --name jxu-bot-app --image jxubotacr.azurecr.io/jxu-bot-app:v1 --cpu 1 --memory 1 --registry-login-server jxubotacr.azurecr.io --registry-username jxubotACR --registry-password o30HQzaBP3/sKT4EXEwLpNvVQ3lmWX4Z --dns-name-label jxu-bot --ports 80
+# Check the container status
+az container show --resource-group botResourceGroup --name jxu-bot-app --query instanceView.state
+az container show --resource-group botResourceGroup --name jxu-bot-app --query ipAddress.fqdn
+#attach local terminal to the container terminal
+az container attach --resource-group botResourceGroup --n jxu-bot-app
+
+#User docker-compose 
+az group deployment create --resource-group botResourceGroup \
+    --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
+# provide jxu/r****1/jxubot as the username/password/dns name 
+az vm show \
+    --resource-group botResourceGroup \
+    --name myDockerVM \
+    --show-details \
+    --query jxubot \
+    --output tsv
+    
+ ssh jxu@jxubot.eastus.cloudapp.azure.com

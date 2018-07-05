@@ -102,6 +102,16 @@ def run(domain_id = "default", serve_forever=True):
         agent.handle_channel(ConsoleInputChannel())
     return agent
 
+def run_fb_webhook(domain_id = "default"):
+    interpreter = RasaNLUInterpreter("models/{}/nlu/default/current".format(domain_id))
+    agent = Agent.load("models/{}/dialogue".format(domain_id), interpreter=interpreter)
+    
+    input_channel = FacebookInput(
+        fb_verify="YOUR_FB_VERIFY",  # you need tell facebook this token, to confirm your URL
+        fb_secret="YOUR_FB_SECRET",  # your app secret
+        fb_access_token="YOUR_FB_PAGE_ACCESS_TOKEN"   # token for the page you subscribed to
+    )
+    return agent
 
 def run_train_bot_online(input_channel, interpreter, domain_id = "default"):
     domain_file="data/{}/domain.yml".format(domain_id)

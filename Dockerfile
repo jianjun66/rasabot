@@ -29,6 +29,7 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 RUN pip3 install --upgrade pip
 
 
+
 # Install TensorFlow CPU version.
 # with --ignore-installed to fix the "It is a distutils installed project" error
 RUN pip install --ignore-installed -r requirements.txt
