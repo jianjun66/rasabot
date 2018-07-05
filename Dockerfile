@@ -34,6 +34,6 @@ RUN pip3 install --upgrade pip
 # with --ignore-installed to fix the "It is a distutils installed project" error
 RUN pip install --ignore-installed -r requirements.txt
 
-#EXPOSE 8000
+EXPOSE 8000
 
-#CMD ["./run_bot.sh"]
+CMD ["./run_bot.sh"]

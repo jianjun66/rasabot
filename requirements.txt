@@ -1,6 +1,6 @@
 ## Setup py requirements
-xmltodict
 rasa_core
 rasa_nlu
 django
-chatterbot
+spacy
+sklearn_crfsuite
