@@ -17,7 +17,7 @@ def init(request):
     tag_list = []
     if m is not None:
         msg_list.append('You>' + m)
-        res_json = json.loads(getBotResponse(request).content)
+        res_json = getBotResponse(request).json()
         msg_list.append('Bot>'+ res_json['text'])
         if res_json['tags']:
             for t in res_json['tags']:

@@ -69,15 +69,15 @@ az container show --resource-group botResourceGroup --name jxu-bot-app --query i
 #attach local terminal to the container terminal
 az container attach --resource-group botResourceGroup --n jxu-bot-app
 
-#User docker-compose 
-az group deployment create --resource-group botResourceGroup \
-    --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
-# provide jxu/r****1/jxubot as the username/password/dns name 
-az vm show \
-    --resource-group botResourceGroup \
-    --name myDockerVM \
-    --show-details \
-    --query jxubot \
-    --output tsv
-    
- ssh jxu@jxubot.eastus.cloudapp.azure.com
+##User docker-compose 
+#az group deployment create --resource-group botResourceGroup \
+#    --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/docker-simple-on-ubuntu/azuredeploy.json
+## provide jxu/r****1/jxubot as the username/password/dns name 
+#az vm show \
+#    --resource-group botResourceGroup \
+#    --name myDockerVM \
+#    --show-details \
+#    --query jxubot \
+#   --output tsv
+#    
+# ssh jxu@jxubot.eastus.cloudapp.azure.com

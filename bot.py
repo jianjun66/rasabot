@@ -7,7 +7,7 @@ import argparse
 import logging
 import warnings
 
-from policy import IntelleiPolicy
+from intelleibot.policy import IntelleiPolicy
 from rasa_core import utils
 from rasa_core.actions import Action
 from rasa_core.agent import Agent
@@ -26,6 +26,8 @@ logger = logging.getLogger(__name__)
 
 domain_identifier = "default"
 agents = {}
+data_folder = "intelleibot/data"
+model_folder = "intelleibot/models"
 
 class ProgramAPI(object):
     def search(self, info):
@@ -61,9 +63,9 @@ class ActionSuggest(Action):
 
 
 def train_dialogue(domain_id = "default"):
-    domain_file="data/{}/domain.yml".format(domain_id)
-    model_path="models/{}/dialogue".format(domain_id)
-    training_data_file="data/{}/stories.md".format(domain_id)
+    domain_file="{}/{}/domain.yml".format(data_folder, domain_id)
+    model_path="{}/{}/dialogue".format(model_folder, domain_id)
+    training_data_file="{}/{}/stories.md".format(data_folder, domain_id)
     agent = Agent(domain_file,
                   policies=[MemoizationPolicy(max_history=3),
                             IntelleiPolicy()])
@@ -85,37 +87,53 @@ def train_nlu(domain_id = "default"):
     from rasa_nlu import config
     from rasa_nlu.model import Trainer
 
-    training_data = load_data('data/{}/intellei_rasa.json'.format(domain_id))
-    trainer = Trainer(config.load("nlu_model_config.yml"))
+    training_data = load_data('{}/{}/intellei_rasa.json'.format(data_folder, domain_id))
+    trainer = Trainer(config.load("intelleibot/nlu_model_config.yml"))
     trainer.train(training_data)
-    model_directory = trainer.persist('models/{}/nlu/'.format(domain_id),
+    model_directory = trainer.persist('{}/{}/nlu/'.format(model_folder, domain_id),
                                       fixed_model_name="current")
 
     return model_directory
 
-
+def train():
+    train_dialogue()
+    train_nlu()
+    
+def answer( message, sender_id ,domain_id = 'default'):
+    try:
+        agent = agents[domain_id]
+    except:
+        interpreter = RasaNLUInterpreter("{}/{}/nlu/default/current".format(model_folder, domain_id))
+        agent = Agent.load("{}/{}/dialogue".format(model_folder, domain_id), interpreter=interpreter)
+        agents[domain_id] = agent
+    return agent.handle_message(message, None, None, sender_id)
+    
 def run(domain_id = "default", serve_forever=True):
-    interpreter = RasaNLUInterpreter("models/{}/nlu/default/current".format(domain_id))
-    agent = Agent.load("models/{}/dialogue".format(domain_id), interpreter=interpreter)
-
+    interpreter = RasaNLUInterpreter("{}/{}/nlu/default/current".format(model_folder, domain_id))
+    agent = Agent.load("{}/{}/dialogue".format(model_folder, domain_id), interpreter=interpreter)
+     
     if serve_forever:
         agent.handle_channel(ConsoleInputChannel())
     return agent
 
 def run_fb_webhook(domain_id = "default"):
-    interpreter = RasaNLUInterpreter("models/{}/nlu/default/current".format(domain_id))
-    agent = Agent.load("models/{}/dialogue".format(domain_id), interpreter=interpreter)
+    try:
+        agent = agents[domain_id]
+    except:
+        interpreter = RasaNLUInterpreter("{}/{}/nlu/default/current".format(model_folder, domain_id))
+        agent = Agent.load("{}/{}/dialogue".format(model_folder, domain_id), interpreter=interpreter)
+        agents[domain_id] = agent
     
     input_channel = FacebookInput(
         fb_verify="YOUR_FB_VERIFY",  # you need tell facebook this token, to confirm your URL
         fb_secret="YOUR_FB_SECRET",  # your app secret
-        fb_access_token="YOUR_FB_PAGE_ACCESS_TOKEN"   # token for the page you subscribed to
+        fb_access_token="EAAFDolR6SBcBAOTdzAvEDP1VjDIRhaxCc7G6T1GTmIWRmr9vPSKERgiIxeGZBfqx7BRySQ9CVZCQ09BC8SdAXOEpGOnek5I1U2zCeJOUrj7AN2ZBjaxLutVVHJg9OWfVut4uZCL90etmWrAOscr0PjU71mJKImfpgw8wRrEw6wZDZD"   # token for the page you subscribed to
     )
-    return agent
+    return agent.handle_channel(input_channel)
 
 def run_train_bot_online(input_channel, interpreter, domain_id = "default"):
-    domain_file="data/{}/domain.yml".format(domain_id)
-    training_data_file='data/{}/stories.md'.format(domain_id)
+    domain_file="{}/{}/domain.yml".format(data_folder, domain_id)
+    training_data_file='{}/{}/stories.md'.format(data_folder, domain_id)
     agent = Agent(domain_file,
                   policies=[MemoizationPolicy(max_history=2), KerasPolicy()],
                   interpreter=interpreter)

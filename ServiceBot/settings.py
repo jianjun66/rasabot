@@ -37,9 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'chatterbot.ext.django_chatterbot',
-    'mlchat',
     'driver',
+    'intelleibot'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -78,10 +77,10 @@ WSGI_APPLICATION = 'ServiceBot.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
 }
 
 
@@ -102,17 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
-#Chatterbot 
-CHATTERBOT = {
-    'name': 'SmartView Bot',
-    'logic_adapters': [
-        'chatterbot.adapters.MathematicalEvaluation',
-        'chatterbot.adapters.TimeLogicAdapter',
-        'chatterbot.adapters.ClosestMatchAdapter',
-        'chatterbot.adapters.ClosestMeaningAdapter'
-    ]
-}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

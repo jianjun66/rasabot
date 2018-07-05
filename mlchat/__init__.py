@@ -1,4 +1,0 @@
-#from .domain_mongo_adapter import DomainMongoDatabaseAdapter
-from mlchat.domain_mongo_adapter import DomainMongoDatabaseAdapter
-from mlchat.best_match_with_tags import BestMatchWithTags
-from .list_trainer_tags import ListTrainerWithTags
