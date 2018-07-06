@@ -81,3 +81,10 @@ az container attach --resource-group botResourceGroup --n jxu-bot-app
 #   --output tsv
 #    
 # ssh jxu@jxubot.eastus.cloudapp.azure.com
+
+# on a new VM
+pip install rasa_nlu[spacy]
+python -m spacy download en_core_web_md
+python -m spacy link en_core_web_md en
+
+

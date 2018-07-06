@@ -20,6 +20,9 @@ from rasa_core.interpreter import RasaNLUInterpreter
 from rasa_core.policies.memoization import MemoizationPolicy
 from rasa_core.interpreter import RegexInterpreter
 from rasa_core.policies.keras_policy import KerasPolicy
+from rasa_core.channels import HttpInputChannel
+from rasa_core.channels.facebook import FacebookInput
+
 
 
 logger = logging.getLogger(__name__)
@@ -125,11 +128,11 @@ def run_fb_webhook(domain_id = "default"):
         agents[domain_id] = agent
     
     input_channel = FacebookInput(
-        fb_verify="YOUR_FB_VERIFY",  # you need tell facebook this token, to confirm your URL
+        fb_verify="intelleibot",  # you need tell facebook this token, to confirm your URL
         fb_secret="YOUR_FB_SECRET",  # your app secret
         fb_access_token="EAAFDolR6SBcBAOTdzAvEDP1VjDIRhaxCc7G6T1GTmIWRmr9vPSKERgiIxeGZBfqx7BRySQ9CVZCQ09BC8SdAXOEpGOnek5I1U2zCeJOUrj7AN2ZBjaxLutVVHJg9OWfVut4uZCL90etmWrAOscr0PjU71mJKImfpgw8wRrEw6wZDZD"   # token for the page you subscribed to
     )
-    return agent.handle_channel(input_channel)
+    agent.handle_channel(HttpInputChannel(5004, "/intelleibot", input_channel))
 
 def run_train_bot_online(input_channel, interpreter, domain_id = "default"):
     domain_file="{}/{}/domain.yml".format(data_folder, domain_id)
@@ -155,7 +158,7 @@ if __name__ == '__main__':
 
     parser.add_argument(
             'task',
-            choices=["train-nlu", "train-dialogue", "run", "train-online"],
+            choices=["train-nlu", "train-dialogue", "run", "train-online", "runfbbot"],
             help="what the bot should do - e.g. run or train?")
     task = parser.parse_args().task
 
@@ -168,3 +171,5 @@ if __name__ == '__main__':
         run_train_bot_online(ConsoleInputChannel(), RegexInterpreter())
     elif task == "run":
         run()
+    elif task == "runfbbot":
+        run_fb_webhook()

@@ -38,3 +38,6 @@ train:
 	
 runbot:
 	python3 bot.py run
+
+runfbbot:
+	python3 bot.py runfbbot

@@ -20,20 +20,6 @@ def webhook(request):
     print("Bot says: {}".format(result))
     return HttpResponse(result, status=200)
 
-
-@csrf_exempt
-@require_POST
-def fb_webhook(request):
-    jsondata = request.body
-    data = json.loads(jsondata, )
-    
-    print(data["sender_id"])
-    print(data["message"])
-    
-    result = run_fb_webhook()
-    print("Bot says: {}".format(result))
-    return HttpResponse(result, status=200)
-
 def train_bot(request):
     train()
     
