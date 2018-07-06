@@ -88,6 +88,6 @@ python -m spacy download en_core_web_md
 python -m spacy link en_core_web_md en
 #rasa fackbook input channel use SSL
 pip3 install pyopenssl
-
+python3 -m rasa_core.run -d intelleibot/models/default/dialogue -u intelleibot/models/default/nlu/default/current --port 5002 --connector facebook --credentials fb_credentials.yml
 
 
