@@ -129,7 +129,7 @@ def run_fb_webhook(domain_id = "default"):
     
     input_channel = FacebookInput(
         fb_verify="intelleibot",  # you need tell facebook this token, to confirm your URL
-        fb_secret="YOUR_FB_SECRET",  # your app secret
+        fb_secret="f229180435b992cf99b715cc07af5760",  # your app secret
         fb_access_token="EAAFDolR6SBcBAOTdzAvEDP1VjDIRhaxCc7G6T1GTmIWRmr9vPSKERgiIxeGZBfqx7BRySQ9CVZCQ09BC8SdAXOEpGOnek5I1U2zCeJOUrj7AN2ZBjaxLutVVHJg9OWfVut4uZCL90etmWrAOscr0PjU71mJKImfpgw8wRrEw6wZDZD"   # token for the page you subscribed to
     )
     agent.handle_channel(HttpInputChannel(5004, "/intelleibot", input_channel))

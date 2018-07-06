@@ -86,5 +86,8 @@ az container attach --resource-group botResourceGroup --n jxu-bot-app
 pip install rasa_nlu[spacy]
 python -m spacy download en_core_web_md
 python -m spacy link en_core_web_md en
+#rasa fackbook input channel use SSL
+pip3 install pyopenssl
+
 
 
