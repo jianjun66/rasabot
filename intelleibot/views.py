@@ -6,6 +6,8 @@ from django.views.decorators.http import require_POST
 from bot import answer 
 from bot import train
 from bot import run_fb_webhook
+import requests
+
 
 def webhook(request):
     if request.method == 'GET':
@@ -32,13 +34,13 @@ def webhook(request):
         resp['recipient'] = result[0]['recipient_id']
         resp['message']['text'] = result[0]['text']
              
-        
+        sendMessageBacktoFB(resp)
         # FB message response is a json with the following attrivutes
         # recipient.id
         # message.text
         # message.quick_replies ( coutnent_type, title, payload, image_rl)  - content type "text", "location", "phone number", "email"
         
-        return HttpResponse(json.dumps(resp), status=200)
+        return HttpResponse(status=200)
              
             
 #       data = json.loads(jsondata, )
@@ -53,6 +55,19 @@ def webhook(request):
     
     return HttpResponse("Unknown method {}".format(request.method), status=500)
 
+
+def sendMessageBacktoFB (message_json):
+#      request({
+#    uri: 'https://graph.facebook.com/v2.6/me/messages',
+#    qs: { access_token: PAGE_ACCESS_TOKEN },
+#    method: 'POST',
+#    json: messageData
+    url = 'https://graph.facebook.com/v2.6/me/messages'
+    payload = message_json['access_token'] = 'EAAFDolR6SBcBAOTdzAvEDP1VjDIRhaxCc7G6T1GTmIWRmr9vPSKERgiIxeGZBfqx7BRySQ9CVZCQ09BC8SdAXOEpGOnek5I1U2zCeJOUrj7AN2ZBjaxLutVVHJg9OWfVut4uZCL90etmWrAOscr0PjU71mJKImfpgw8wRrEw6wZDZD'
+ 
+    requests.post(url, data=json.dumps(payload))
+    
+    
 def train_bot(request):
     train()
     
