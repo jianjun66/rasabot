@@ -8,7 +8,7 @@ from bot import train
 from bot import run_fb_webhook
 
 @csrf_exempt
-@require_POST
+@require_GET
 def webhook(request):
     jsondata = request.body
     data = json.loads(jsondata, )

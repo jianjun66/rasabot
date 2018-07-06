@@ -88,6 +88,20 @@ python -m spacy download en_core_web_md
 python -m spacy link en_core_web_md en
 #rasa fackbook input channel use SSL
 pip3 install pyopenssl
-python3 -m rasa_core.run -d intelleibot/models/default/dialogue -u intelleibot/models/default/nlu/default/current --port 5002 --connector facebook --credentials fb_credentials.yml
 
+#run django on SSL https://github.com/teddziuba/django-sslserver
+pip3 install django-secure
+pip3 install django-sslserver
+
+#get a certificate using certbot https://certbot.eff.org/lets-encrypt/ubuntutrusty-other
+IMPORTANT NOTES:
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/jxurasabot.eastus.cloudapp.azure.com/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/jxurasabot.eastus.cloudapp.azure.com/privkey.pem
+   Your cert will expire on 2018-10-04. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+ - If you like Certbot, please consider supporting our work by:
 
