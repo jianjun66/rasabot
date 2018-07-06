@@ -10,7 +10,7 @@
       "slots": []
     }
   },
-  "rasa_core": "0.9.6",
+  "rasa_core": "0.9.7",
   "max_histories": [
     3,
     5

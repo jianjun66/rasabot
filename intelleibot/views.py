@@ -7,18 +7,18 @@ from bot import answer
 from bot import train
 from bot import run_fb_webhook
 
-@csrf_exempt
-@require_GET
 def webhook(request):
     jsondata = request.body
-    data = json.loads(jsondata, )
+    print(jsondata)
+#    data = json.loads(jsondata, )
     
-    print(data["sender_id"])
-    print(data["message"])
+#    print(data["sender_id"])
+#    print(data["message"])
     
-    result = answer(data["message"], data["sender_id"])
-    print("Bot says: {}".format(result))
-    return HttpResponse(result, status=200)
+#    result = answer(data["message"], data["sender_id"])
+#    print("Bot says: {}".format(result))
+#    return HttpResponse(result, status=200)
+    return HttpResponse("Hi", status=200)
 
 def train_bot(request):
     train()
