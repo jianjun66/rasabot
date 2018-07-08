@@ -8,6 +8,7 @@ from bot import train
 from bot import run_fb_webhook
 import requests
 
+message_hash = {}
 
 def webhook(request):
     if request.method == 'GET':
@@ -23,8 +24,8 @@ def webhook(request):
 
     elif request.method == 'POST':
         jsondata = json.loads(request.body)
+        print('=------------------- {}'.format(jsondata))
 
-        print(" the request body ----- {}".format(jsondata['entry']))
         #TODO : iterate through messaging
         entry = jsondata['entry'][0]
         if 'messaging' in entry:
@@ -33,24 +34,64 @@ def webhook(request):
                 print('delivery received, do nothing for now')
             elif 'read' in messaging:
                 print('read received, do nothing for now')
-            elif 'message' in messaging:
-                msg = messaging['message']['text']
-                sid = messaging['sender']['id']
+            elif 'message' in messaging or 'postback' in messaging :
+                is_postback = False
                 is_echo = False
-                if 'is_echo' in messaging['message']:
-                    is_echo = messaging['message']['is_echo']
+                mid = "-1"
+                if 'postback' in messaging:
+                    is_postback = True
+
+                if is_postback:
+                    msg = messaging['postback']['payload']
+                else:
+                    msg = messaging['message']['text']
+                    mid = messaging['message']['mid']
+                    if 'is_echo' in messaging['message']:
+                        is_echo = messaging['message']['is_echo']
+
+                sid = messaging['sender']['id']
+
 
                 if not is_echo:
-                    #call rasabot for answer
-                    result = answer(msg, sid)
-
-                    if result and len(result) >= 0:
+                    
+                    #this is a hack to eliminate the duplicated message sent from FB
+                    #TODO: find a better way to deal with it
+                    if sid in message_hash and not is_postback and message_hash[sid] == mid : 
+                       #don't do anythin
+                       print("message already processed, do nothing ")
+                    else :
+                        #call rasabot for answer
+                        print("call bot for answer for {} and message : {}".format(sid, msg))
+                        result = answer(msg, sid)
                         print('response from answer {}'.format(json.dumps(result)))
-                        data = {
-                         "recipient" : { "id" : sid},
-                         "message" : {"text": result[0]['text']}
-                        }
-                        sendMessageBacktoFB(json.dumps(data))
+                        if mid != "-1" : #postback doesn't have mid 
+                            message_hash[sid] = mid
+                        if result and len(result) > 0:
+                            if 'data' in result[0] and len(result[0]['data']) > 0:
+                                payload_data = result[0]['data'] 
+                                buttons = []
+                                for p in payload_data: #payload_data already contains "payload" and "title"
+                                    p["type"] = "postback"
+                                    buttons.append(p)
+                                
+                                data = {
+                                    "recipient": {"id": sid},
+                                    "message": {"attachment" : {"type": "template",
+                                                                "payload" : { "template_type": "button", 
+                                                                              "text": result[0]['text'],
+                                                                              "buttons" : buttons 
+                                                                            }
+                                                                }
+                                               }
+                                                                                
+                                       }
+                            else:
+                                data = {
+                                "recipient" : { "id" : sid},
+                                "message" : {"text": result[0]['text']}
+                                }
+                            
+                            sendMessageBacktoFB(json.dumps(data))
         else:
             print('No messaging in request body')
 
@@ -62,14 +103,6 @@ def webhook(request):
         
         return HttpResponse(status=200)
              
-            
-#       data = json.loads(jsondata, )
-    
-#       result = answer(data["message"], data["sender_id"])
-#       print("Bot says: {}".format(result))
-#       return HttpResponse(result, status=200)
-#        return HttpResponse('OK', status=200)
-    
     return HttpResponse("Unknown method {}".format(request.method), status=500)
 
 

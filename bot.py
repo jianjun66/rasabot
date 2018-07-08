@@ -121,7 +121,10 @@ def run(domain_id = "default", serve_forever=True):
 
 # can't get this to work with FB  - FB requires https - the FB input channel runs on http
 # use Django instead
-def run_fb_webhook(domain_id = "default"):
+def run_fb_webhook(a, b):
+    print(a)
+    print(b)
+    domain_id = "default"
     try:
         agent = agents[domain_id]
     except:
