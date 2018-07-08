@@ -105,3 +105,22 @@ IMPORTANT NOTES:
    "certbot renew"
  - If you like Certbot, please consider supporting our work by:
 
+############# Fackbook Webhook specs
+{ 
+  'object': 'page', 
+  'entry': [{'id': '559409971122584', 'time': 1530901991476, 
+             'messaging': [
+                {'sender': {'id': '1729084313868934'}, 'recipient': {'id': '559409971122584'}, 'timestamp': 1530901991146, 
+                            'message': {'mid': '0iT6rkgCXEDaJx_Mv2tvCAv38dYLjrnAiOzwcNcZDA81a-bfyk8QnAWLMgIxRa82IhifvCcIU-7rXntAu7KFfw', 
+                                        'seq': 83785, 
+                                        'text': 'i am getting really close'}
+                            }
+                           ]
+             }]
+ }
+#run the bot.py on https
+# install gunicorn 
+sudo apt install gunicorn #linux
+or pip3 install gunicorn #mac
+gunicorn --certfile fullchain.pem --keyfile privkey.pem -b 0.0.0.0:8000 bot:run_fb_webhook
+

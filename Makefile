@@ -40,4 +40,4 @@ runbot:
 	python3 bot.py run
 
 runfbbot:
-	python3 bot.py runfbbot
+	python3 -m gunicorn.app.wsgiapp --certfile fullchain.pem --keyfile privkey.pem -b 0.0.0.0:8000 bot:run_fb_webhook
